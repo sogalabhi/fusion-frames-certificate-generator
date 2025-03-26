@@ -1,0 +1,17 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Lavishly+Yours&display=swap');
+@import "tailwindcss";
+
+@font-face {
+  font-family: 'Lavishly Yours';
+  font-style: normal;
+  font-weight: 400;
+  src: url('https://fonts.googleapis.com/css2?family=Lavishly+Yours&display=swap');
+}
+
+.certificate-text {
+  font-family: 'Lavishly Yours', cursive;
+  font-size: 48px;
+  color: black;
+  text-align: center;
+}
