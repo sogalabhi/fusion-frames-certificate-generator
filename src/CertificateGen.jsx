@@ -1,9 +1,48 @@
 import { useState, useRef, useEffect } from "react";
 import { saveAs } from "file-saver";
 import html2canvas from "html2canvas";
-import certificateBg from "./assets/certificate.png";
+import certificateBg from "./assets/dummycertificate.png";
 
-const validNames = ["Alice Johnson", "Bob Smith", "Charlie Davis"];
+const validNames = [
+  "Nilanjan Pradhan",
+  "Ananya Sharma",
+  "Atmakuri Sree Harshini",
+  "SAKTHI T",
+  "PRADEEP S",
+  "Nirnay Ghosh",
+  "Harshi Adamya",
+  "Ujjwal Jain",
+  "Shankesh Raja V",
+  "Merlyn Jennie G",
+  "Vivek Varia",
+  "Manav Maini",
+  "Adithya Naik",
+  "B Chaitanya Reddy",
+  "Alok Kumar Sahoo",
+  "Kanimozhi. K",
+  "Sruthi",
+  "OM",
+  "Vaishnavi Lakade",
+  "Gunjan Daiya",
+  "vilasini",
+  "Raj Patel",
+  "Swetha G",
+  "Apurva Khangal",
+  "Jyotsna Priya B",
+  "Juanita Grace Singh",
+  "Suryansh Singh",
+  "w karunakaran",
+  "vishal",
+  "Humayun Mirza",
+  "Keerti",
+  "Varkey Josu",
+  "Rugved Kulkarni",
+  "Jay Patel",
+  "Dheeraj Ray",
+  "Tanya Rishikesh",
+  "Mohnish Joshi"
+];
+
 
 export default function CertificateGenerator() {
   const [name, setName] = useState("");
@@ -17,7 +56,12 @@ export default function CertificateGenerator() {
   const downloadCertificate = async () => {
     if (!canvasRef.current) return;
     const canvas = canvasRef.current;
-    const image = await html2canvas(canvas);
+
+    // Ensure canvas has been updated with the background and text
+    const image = await html2canvas(canvas, {
+      scale: 2,  // Use higher scale for better resolution
+    });
+
     image.toBlob((blob) => {
       if (blob) {
         saveAs(blob, `${name}-certificate.png`);
@@ -34,18 +78,24 @@ export default function CertificateGenerator() {
     if (!ctx) return;
 
     const img = new Image();
-    img.crossOrigin = "Anonymous";
+    img.crossOrigin = "Anonymous";  // Make sure the image is loaded correctly
     img.src = certificateBg;
+
     img.onload = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+      // Ensure the canvas is cleared before drawing
       ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-      
+
       ctx.fillStyle = "#000";
       ctx.font = "48px 'Lavishly Yours', cursive";
       ctx.textAlign = "center";
-      ctx.fillText(name, canvas.width / 2, 330);
-      
+      ctx.fillText(name, canvas.width / 2, 370);
+
       ctx.font = "20px sans-serif";
+    };
+
+    img.onerror = (error) => {
+      console.error("Image loading failed", error);
     };
   }, [isValid, name]);
 
