@@ -108,8 +108,23 @@ export default function CertificateGenerator() {
         className="border p-2 rounded mb-2"
         value={name}
         onChange={(e) => setName(e.target.value)}
+        disabled={isValid}
       />
-      <button onClick={checkName} className="bg-blue-500 text-white px-4 py-2 rounded mb-4">Check Name</button>
+
+      <div className="flex gap-4 mb-10">
+        <button onClick={checkName} className="bg-blue-500 text-white px-4 py-2 rounded">Check Name</button>
+        <button
+          onClick={() => {
+            setName("");
+            setIsValid(false);
+          }}
+          className="bg-gray-400 text-white px-4 py-2 rounded"
+        >
+          Try Another Name
+        </button>
+      </div>
+
+
       {isValid && (
         <>
           <canvas ref={canvasRef} width={800} height={600} className="border shadow-lg rounded-lg" />
