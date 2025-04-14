@@ -40,7 +40,8 @@ const validNames = [
   "Jay Patel",
   "Dheeraj Ray",
   "Tanya Rishikesh",
-  "Mohnish Joshi"
+  "Mohnish Joshi",
+  "Titiksha yadav"
 ];
 
 
@@ -123,7 +124,6 @@ export default function CertificateGenerator() {
           Try Another Name
         </button>
       </div>
-
 
       {isValid && (
         <>
